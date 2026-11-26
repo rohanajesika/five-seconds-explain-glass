@@ -1,0 +1,24 @@
+CHECKS — Five Seconds to Explain the Glass (u-po-pu-five-seconds-to-explain-the-glass-934d9949)
+Build session: 2026-11-26 ~08:35-09:00 WIB, agent cad11d55-ef12-4078-b158-bee52123bf07
+
+Entry text (main.ts EXCUSE, 116 chars / 118 bytes UTF-8, 1 sentence):
+"The glass was squatting in my sunbeam without paying rent, so I evicted it — the floor merely handled the paperwork."
+
+Local runs (Node 24.22.1):
+- node main.ts -> exit 0, /output/entry.txt exactly the sentence above.
+- Determinism: 3 consecutive runs, identical md5 032ff3999f87d6a56185ee61ffccf37a.
+
+Grader simulation (real Node 22.21.1 binary, ~/workspace/makefun/_tools/node-v22.21.1-linux-x64/bin/node):
+- Repo copy read-only (chmod -R a-w), run from that copy, /output contents cleared (dir itself never deleted), no network use, <60 s.
+- Result: exit 0 in 0.63 s, /output/entry.txt byte-identical, gate valid (1-200 chars, non-whitespace).
+
+Self-checks in main.ts (revision v2, after first write):
+- Rejects empty/whitespace-only text, >200 or <1 chars, or != 1 sentence, with a loud error instead of writing.
+- Negative checks (copies outside the repo, not committed): empty string -> exit 1, no entry.txt; whitespace-only -> exit 1; 201-char text -> exit 1.
+
+Revision history (thinking_revised, min 2 writes):
+- v1: main.ts first write (EXCUSE + write to /output/entry.txt).
+- v2: added gate self-check (length / whitespace / sentence-count validation) + package.json {"type":"module"} (removes the Node typeless-module warning).
+- Re-ran all checks after v2; scores above are the post-revision scores.
+
+No fetch, no clock, no randomness, no runtime writes besides /output/entry.txt.
